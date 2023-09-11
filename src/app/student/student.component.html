@@ -1,0 +1,202 @@
+<app-header [menuType]="menuType" (displayForm)="displayForm()"></app-header>
+<div *ngIf="showForm" class="formData">
+    <div class="insData">
+        <h1>Student Registration</h1>
+        <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+            <nz-form-item>
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Input your name">
+                    <div class="form__group field">
+                        <input type="text" formControlName="userName" id="userName" class="form__field"
+                            placeholder="Full Name" required="">
+                        <label for="name" class="form__label">Full Name</label>
+                    </div>
+                </nz-form-control>
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Fathers name is required!">
+                    <div class="form__group field">
+                        <input type="text" formControlName="fName" id="fName" class="form__field" placeholder="Name"
+                            required="">
+                        <label for="fname" class="form__label">Fathers Name</label>
+                    </div>
+                </nz-form-control>
+            </nz-form-item>
+
+
+
+
+
+            <nz-form-item>
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please Input valid E-mail!">
+                    <div class="form__group field">
+                        <input type="email" formControlName="email" id="email" class="form__field" placeholder="Name"
+                            required="">
+                        <label for="name" class="form__label">Email Id</label>
+                    </div>
+                </nz-form-control>
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your phone number!">
+                    <div class="form__group field">
+                        <input type="text" formControlName="phoneNumber" id="phonenumber" class="form__field"
+                            placeholder="Name" required="">
+                        <label for="phoneNumber" class="form__label">Mobile Number</label>
+                    </div>
+                </nz-form-control>
+            </nz-form-item>
+
+
+            <nz-form-item>
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Enter your data of birth">
+                    <div class="form__group field">
+                        <input formControlName="dob" id="dob" class="form__field" placeholder="dob" required="">
+                        <label for="name" class="form__label">Enter DOB(dd-mm-yy)</label>
+                    </div>
+                </nz-form-control>
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your Gender!">
+                    <div class="form__group field">
+                        <input type="text" formControlName="gender" id="gender" class="form__field" placeholder="Name"
+                            required="">
+                        <label for="gender" class="form__label">Enter Gender</label>
+                    </div>
+                </nz-form-control>
+            </nz-form-item>
+
+
+            <nz-form-item>
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Input Course">
+                    <div class="form__group field">
+                        <input type="text" formControlName="userCourse" id="course" class="form__field"
+                            placeholder="userCourse" required="">
+                        <label for="name" class="form__label">Enter Course</label>
+                    </div>
+                </nz-form-control>
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your Subject!">
+                    <div class="form__group field">
+                        <input type="text" formControlName="userSub" id="subject" class="form__field" placeholder="Name"
+                            required="">
+                        <label for="userSub" class="form__label">Select Subject</label>
+                    </div>
+                </nz-form-control>
+            </nz-form-item>
+
+
+
+            <nz-form-item>
+                <nz-form-item>
+                    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your password!">
+                        <div class="form__group field">
+                            <input class="form__field" type="{{ hidePassword ? 'password' : 'text' }}" placeholder="Password" id="password"
+                                formControlName="password" (ngModelChange)="updateConfirmValidator()" />
+                                <span *ngIf="!hidePassword" class="visible" nz-icon (click)="togglePasswordVisibility()" nzType="eye-invisible" nzTheme="outline"></span>
+                                <span *ngIf="hidePassword" class="visible" (click)="togglePasswordVisibility()"  nz-icon nzType="eye" nzTheme="outline"></span>
+                            <label for="name" class="form__label"> Password</label>
+                        </div>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="errorTpl">
+                        <div style="margin-left: 272px;" class="form__group field">
+                            <input class="form__field"  placeholder="Confirm Password" type="{{ hideCPassword ? 'password' : 'text' }}"
+                                formControlName="checkPassword" id="checkPassword" />
+                                <span *ngIf="!hideCPassword" class="visible" style="height: 30px;" (click)="toggleCPasswordVisibility()" nz-icon nzType="eye-invisible" nzTheme="outline"></span>
+                                <span *ngIf="hideCPassword" class="visible" nz-icon nzType="eye" (click)="toggleCPasswordVisibility()" nzTheme="outline"></span>
+                            <label for="name" class="form__label">Confirm Password</label>
+                        </div>
+                        <ng-template #errorTpl let-control>
+                            <ng-container *ngIf="control.hasError('required')">Please confirm your
+                                password!</ng-container>
+                            <ng-container *ngIf="control.hasError('confirm')">
+                                Two passwords that you enter is inconsistent!
+                            </ng-container>
+                        </ng-template>
+                    </nz-form-control>
+                </nz-form-item>
+            </nz-form-item>
+
+
+            <nz-form-item nz-row class="register-area">
+                <nz-form-control [nzSpan]="14" [nzOffset]="6">
+                    <button nz-button class="registerBtn" nzType="primary">Register</button>
+                    <span class="custom-button" (click)="cancelForm()">Cancel</span>
+                </nz-form-control>
+            </nz-form-item>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+<!-- confirmation -->
+<!-- registration msg -->
+<nz-modal [(nzVisible)]="isSucessfull" nzOkText="Ok" nzCancelText="Cancel" (nzOnOk)="handleOk()"
+    (nzOnCancel)="handleCancel()">
+    <ng-container *nzModalContent>
+        <img width="80px" height="65px" src="../../assets/payment_successful.gif" alt="">
+        <span style="font-size: 25px; font-weight: bold;">Registration Sucessfull</span>
+    </ng-container>
+</nz-modal>
+<br />
+
+<button nz-button nzType="primary" (click)="showConfirmError()">Confirm</button>
+<nz-modal [(nzVisible)]="isError" nzOkText="Ok" nzCancelText="Cancel" (nzOnOk)="handleOkError()"
+    (nzOnCancel)="handleCancelError()">
+    <ng-container *nzModalContent>
+        <p class="errorAlert">Please check all input fields</p>
+    </ng-container>
+</nz-modal>
+<br />
+<div *ngIf="showTable" class="top">
+
+    <h1 class="h1Data">Total Student:{{totalStudent}}</h1>
+    <div class="container">
+        <input type="text" id="box" placeholder="Search students..." class="search__box">
+        <span class="fas fa-search search__icon" id="icon" nz-icon nzType="search" nzTheme="outline"
+            (click)="toggleShow()"></span>
+    </div>
+</div>
+<!-- table -->
+<div *ngIf="showTable" class="studentData">
+    <nz-table nzTemplateMode>
+        <thead class="theader">
+            <tr>
+                <th class="theader">Student ID</th>
+                <th class="theader">Name</th>
+                <th class="theader">Fathers Name</th>
+                <th class="theader">Email Id</th>
+                <th class="theader">Mobile Number</th>
+                <th class="theader">DOB</th>
+                <th class="theader">Gender</th>
+                <th class="theader">Course</th>
+                <th class="theader">Subject</th>
+                <th class="theader">Password</th>
+                <th class="theader">Attendence</th>
+                <th class="theader">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of studentList |paginate:{itemsPerPage:tableSize,
+                currentPage:page}">
+                <td>{{ data.id }}</td>
+                <td>{{ data.userName }}</td>
+                <td>{{ data.fName }}</td>
+                <td>{{ data.email }}</td>
+                <td>{{ data.phoneNumber }}</td>
+                <td>{{ data.dob }}</td>
+                <td>{{ data.gender }}</td>
+                <td>{{ data.userCourse }}</td>
+                <td>{{ data.userSub }}</td>
+                <td>{{ data.password }}</td>
+                <td><a href="">0%</a></td>
+                <td><a style="color: red;"><span (click)="showConfirmm(data.id)" nz-icon nzType="delete"
+                            nzTheme="outline"></span></a><span style="margin-left: 40px;"> <a><span
+                                routerLink="/updateUser/{{data.id}}" nz-icon nzType="edit"
+                                nzTheme="outline"></span></a></span> </td>
+
+            </tr>
+        </tbody>
+    </nz-table>
+</div>
+<div class="pagination">
+<pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="page = $event"></pagination-controls>
+</div>
+
+<app-footer></app-footer>

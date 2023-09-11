@@ -1,0 +1,95 @@
+{
+  "studentData": [
+    {
+      "userName": "Adarsh Kumar Sharma",
+      "email": "adarsh@gmail.com",
+      "fName": "Abhinandan Sharma",
+      "password": "1234abc",
+      "checkPassword": "1234abc",
+      "phoneNumber": "8102989356",
+      "gender": "Male",
+      "dob": "17-02-2002",
+      "userCourse": "B-Tech",
+      "userSub": "IT",
+      "id": 1
+    },
+    {
+      "userName": "Mukesh",
+      "email": "mukesh@gmail.com",
+      "fName": "Dheeru",
+      "password": "1234",
+      "checkPassword": "1234",
+      "phoneNumber": "54365435454",
+      "gender": "Male",
+      "dob": "17-07-1958",
+      "userCourse": "B-Tech",
+      "userSub": "EC",
+      "id": 2
+    },
+    {
+      "userName": "Elon Mask",
+      "email": "mask@gmail.com",
+      "fName": "Any Mask",
+      "password": "12345",
+      "checkPassword": "12345",
+      "phoneNumber": "568876756756",
+      "gender": "Male",
+      "dob": "12-07-1989",
+      "userCourse": "B-Tech",
+      "userSub": "Aero Space",
+      "id": 3
+    }
+  ],
+  "loginInfo": [
+    {
+      "email": "shivam@gmail.com",
+      "password": "12345",
+      "id": 1
+    },
+    {
+      "email": "rashmi@gmail.com",
+      "password": "1234",
+      "id": 2
+    },
+    {
+      "email": "a@gmail.com",
+      "password": "1",
+      "id": 3
+    }
+  ],
+  "facultyData": [
+    {
+      "userName": "Rishi Soni",
+      "email": "rishi@gmail.com",
+      "department": "CSE",
+      "password": "12",
+      "checkPassword": "12",
+      "phoneNumber": "5676879909",
+      "age": "56",
+      "course": "DSA",
+      "id": 1
+    },
+    {
+      "userName": "Rashmi Pandey",
+      "email": "rashmi@gmail.com",
+      "department": "CSE",
+      "password": "1234",
+      "checkPassword": "1234",
+      "phoneNumber": "87879868",
+      "age": "45",
+      "course": "DBMS",
+      "id": 2
+    },
+    {
+      "userName": ",jcvkxhgcv",
+      "email": "a@gmail.com",
+      "department": "vdvshgczc",
+      "password": "1",
+      "checkPassword": "1",
+      "phoneNumber": "123456",
+      "age": "cvcv",
+      "course": "sdvv",
+      "id": 3
+    }
+  ]
+}

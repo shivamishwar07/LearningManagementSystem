@@ -1,0 +1,46 @@
+
+<div class="mainscreen">
+    <div class="toppart">
+        <div class="herotext">
+            <h1><img class="logo" src="https://expertphotography.b-cdn.net/wp-content/uploads/2011/05/photography-books-1.jpg" alt="Logo">The Knowledge ganga 📚💻</h1>
+            <p>" Get notes directly to  your mail as soon as the new lecture uploads. " <br>Easy way to get notes 👊 AB PHODO !!</p>
+        </div>
+        <h2 class="error">{{loginError}}</h2>
+      </div>
+    <div class="bottompart">
+        <div class="imgpart">
+            <img src="https://static.wixstatic.com/media/3ec22c_21b2e48ae3914af98cc65ccfdbfe3bc4~mv2_d_4256_2832_s_4_2.jpg/v1/fill/w_1962,h_1710,al_c,q_90,usm_0.66_1.00_0.01/3ec22c_21b2e48ae3914af98cc65ccfdbfe3bc4~mv2_d_4256_2832_s_4_2.webp" class="heroimg" alt="">
+        </div>
+        <div class="formpart">
+            <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+                <nz-form-item>
+                  <nz-form-control nzErrorTip="Please input your email correctly!">
+                    <nz-input-group nzPrefixIcon="user">
+                      <input type="email" nz-input formControlName="email" placeholder="Email" />
+                    </nz-input-group>
+                  </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                  <nz-form-control nzErrorTip="Please input your Password!">
+                    <nz-input-group nzPrefixIcon="lock">
+                      <input type="password" nz-input formControlName="password" placeholder="Password" />
+                    </nz-input-group>
+                  </nz-form-control>
+                </nz-form-item>
+                <div nz-row class="login-form-margin">
+                  <div style=" margin-bottom: 15px;" nz-col [nzSpan]="12">
+                    <a class="login-form-forgot">Forgot password</a>
+                  </div>
+                </div>
+                <div nz-row class="login-form-margin">
+                    <div style=" margin-bottom: 15px;" nz-col [nzSpan]="12">
+                        <!-- <nz-spin nzTip="Loading..."></nz-spin> -->
+                    </div>
+                  </div>
+                <button ng-click="$parent.add=!$parent.add" nz-button nzType="primary" style="cursor: pointer;" class="login-form-button login-form-margin">Log in</button>
+                Or
+                <a target="_blank" href="https://forms.gle/1xFta4U46Yj8P2hJ9">register now!</a>
+              </form>
+        </div>
+    </div>
+</div>
