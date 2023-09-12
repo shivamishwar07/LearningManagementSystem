@@ -1,18 +1,19 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
-import { Login, student} from './data-type';
+import { Injectable } from "@angular/core";
+import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from "@angular/router";
+import { Observable } from "rxjs";
+import { UserService } from "./services/user.service";
+
 @Injectable({
-  providedIn: 'root'
+  providedIn:'root'
 })
-export class UserService {
-isUserLoggedIn=new BehaviorSubject<boolean>(false)
-  constructor(private http:HttpClient ,private route:Router) { }
-  reloadUser(){
-    if (localStorage.getItem('user')){
-      this.isUserLoggedIn.next(true);
-      this.route.navigate(['/admin'])
-    }
+
+export class AuthGuard implements CanActivate{
+  constructor(private userService:UserService){}
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+      if (localStorage.getItem('user'))
+      return true
+      return this.userService.isUserLoggedIn;
   }
 }

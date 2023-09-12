@@ -1,0 +1,115 @@
+<app-header></app-header>
+
+<div class="formData">
+    <div class="insData">
+        <h1>Update Faculty</h1>
+        <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+            <nz-form-item>
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Input your name">
+                    <div class="form__group field">
+                        <input type="text" ngModel="{{facultyData?.userName}}" formControlName="userName" id="userName" class="form__field"
+                            placeholder="Full Name" required="">
+                        <label for="name" class="form__label">Full Name</label>
+                    </div>
+                </nz-form-control>
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Department is requred">
+                    <div class="form__group field">
+                        <input type="text" ngModel="{{facultyData?.department}}" formControlName="department" id="department" class="form__field" placeholder="Name"
+                            required="">
+                        <label for="department" class="form__label">Department Name</label>
+                    </div>
+                </nz-form-control>
+            </nz-form-item>
+
+
+
+
+
+            <nz-form-item>
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please Input valid E-mail!">
+                    <div class="form__group field">
+                        <input type="email" formControlName="email" ngModel="{{facultyData?.email}}" id="email" class="form__field" placeholder="Name"
+                            required="">
+                        <label for="name" class="form__label">Email Id</label>
+                    </div>
+                </nz-form-control>
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your phone number!">
+                    <div class="form__group field">
+                        <input type="text" formControlName="phoneNumber" ngModel="{{facultyData?.phoneNumber}}" id="phonenumber" class="form__field"
+                            placeholder="Name" required="">
+                        <label for="phoneNumber" class="form__label">Mobile Number</label>
+                    </div>
+                </nz-form-control>
+            </nz-form-item>
+
+
+            <nz-form-item>
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Input Course">
+                    <div class="form__group field">
+                        <input type="text" formControlName="course" ngModel="{{facultyData?.course}}" id="course" class="form__field"
+                            placeholder="course" required="">
+                        <label for="name" class="form__label">Enter Course</label>
+                    </div>
+                </nz-form-control>
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your Age!">
+                    <div class="form__group field">
+                        <input type="text" formControlName="age" id="subject" ngModel="{{facultyData?.age}}"class="form__field" placeholder="Name"
+                            required="">
+                        <label for="age" class="form__label">Enter Age</label>
+                    </div>
+                </nz-form-control>
+            </nz-form-item>
+
+
+
+            <nz-form-item>
+                <nz-form-item>
+                    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your password!">
+                        <div class="form__group field">
+                            <input ngModel="{{facultyData?.password}}" class="form__field" type="{{ hidePassword ? 'password' : 'text' }}" placeholder="Password" id="password"
+                                formControlName="password" (ngModelChange)="updateConfirmValidator()" />
+                                <span *ngIf="!hidePassword" class="visible" nz-icon (click)="togglePasswordVisibility()" nzType="eye-invisible" nzTheme="outline"></span>
+                                <span *ngIf="hidePassword" class="visible" (click)="togglePasswordVisibility()"  nz-icon nzType="eye" nzTheme="outline"></span>
+                            <label for="name" class="form__label"> Password</label>
+                        </div>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="errorTpl">
+                        <div style="margin-left: 272px;" class="form__group field">
+                            <input ngModel="{{facultyData?.password}}" class="form__field"  placeholder="Confirm Password" type="{{ hideCPassword ? 'password' : 'text' }}"
+                                formControlName="checkPassword" id="checkPassword" />
+                                <span *ngIf="!hideCPassword" class="visible" style="height: 30px;" (click)="toggleCPasswordVisibility()" nz-icon nzType="eye-invisible" nzTheme="outline"></span>
+                                <span *ngIf="hideCPassword" class="visible" nz-icon nzType="eye" (click)="toggleCPasswordVisibility()" nzTheme="outline"></span>
+                            <label for="name" class="form__label">Confirm Password</label>
+                        </div>
+                        <ng-template #errorTpl let-control>
+                            <ng-container *ngIf="control.hasError('required')">Please confirm your
+                                password!</ng-container>
+                            <ng-container *ngIf="control.hasError('confirm')">
+                                Two passwords that you enter is inconsistent!
+                            </ng-container>
+                        </ng-template>
+                    </nz-form-control>
+                </nz-form-item>
+            </nz-form-item>
+            <nz-modal [(nzVisible)]="isSucessfull" nzOkText="Ok" nzCancelText="Cancel" (nzOnOk)="handleOk()"
+            (nzOnCancel)="handleCancel()">
+            <ng-container *nzModalContent>
+                <img width="80px" height="65px" src="../../assets/payment_successful.gif" alt="">
+                <span style="font-size: 25px; font-weight: bold;">Updated Sucessfully</span>
+            </ng-container>
+        </nz-modal>
+
+            <nz-form-item nz-row class="register-area">
+                <nz-form-control [nzSpan]="14" [nzOffset]="6">
+                    <button nz-button class="registerBtn" nzType="primary">Save</button>
+                    <span class="custom-button" (click)="cancelForm()">Cancel</span>
+                </nz-form-control>
+            </nz-form-item>
+        </form>
+    </div>
+</div>
+
+
+<app-footer></app-footer>

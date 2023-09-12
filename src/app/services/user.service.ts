@@ -1,8 +1,8 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { Login, student } from '../data-type';
+import { Login, faculty, student } from '../data-type';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 const studentList = 'http://localhost:3000/studentData'
 const facultyList='http://localhost:3000/facultyData'
 @Injectable({
@@ -11,6 +11,8 @@ const facultyList='http://localhost:3000/facultyData'
 export class UserService {
   isLoginError = new EventEmitter<boolean>(false)
   modalService: any;
+  loginError:string="";
+  isUserLoggedIn=new BehaviorSubject<boolean>(false)
   constructor(private http: HttpClient, private router: Router) { }
 
   userLogin(data: Login) {
@@ -19,6 +21,7 @@ export class UserService {
         if (result && result.body && result.body.length) {
           localStorage.setItem('user', JSON.stringify(result.body[0]));
           this.router.navigate(['/admin'])
+          this.isUserLoggedIn.next(true);
         }
         else {
           this.isLoginError.emit(true)
@@ -31,6 +34,14 @@ export class UserService {
         this.showModal();
       }
     })
+  }
+  reload()
+  {
+    if(localStorage.getItem('user'))
+    {
+      this.isUserLoggedIn.next(true);
+      this.router.navigate(['/admin'])
+    }
   }
   saveData(email: string, password: string) {
     const formData = {
@@ -50,6 +61,9 @@ export class UserService {
   updateUser(student: student) {
     return this.http.put<student>(`http://localhost:3000/studentData/${student.id}`, student)
   }
+  updateFaculty(faculty:faculty) {
+    return this.http.put<faculty>(`http://localhost:3000/facultyData/${faculty.id}`, faculty)
+  }
   
   studentList() {
     return this.http.get<student[]>('http://localhost:3000/studentData');
@@ -59,7 +73,6 @@ export class UserService {
     if (localStorage.getItem('user'))
       this.router.navigate(['AdminComponent'])
   }
-
   isVisible = false;
   showModal(): void {
     this.isVisible = true;

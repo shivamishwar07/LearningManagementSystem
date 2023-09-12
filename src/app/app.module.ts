@@ -29,6 +29,8 @@ import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { UpdateProfileComponent } from './update-profile/update-profile.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FacultyComponent } from './faculty/faculty.component';
+import { UpdateFacultyComponent } from './update-faculty/update-faculty.component';
+import { AttendenceComponent } from './attendence/attendence.component';
 registerLocaleData(en);
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ registerLocaleData(en);
     StudentComponent,
     UpdateProfileComponent,
     FacultyComponent,
+    UpdateFacultyComponent,
+    AttendenceComponent,
   ],
   imports: [
     BrowserModule,

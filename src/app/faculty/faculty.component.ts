@@ -148,7 +148,6 @@ showConfirm(): void {
     });
     this.showForm = false;
   }
- 
   list() {
     this.faculty.getAllFaculty().subscribe((result) => {
       this.facultyList = result;

@@ -9,29 +9,32 @@ import { UserService } from '.././services/user.service';
 })
 export class LoginAuthComponent {
   menuType: string = "default"
-  loginError: string = ""
+  authError:undefined|string=''
   constructor(private fb: UntypedFormBuilder,  private route: Router,private user:UserService) { }
   ngOnInit(): void {
     this.validateForm = this.fb.group({
       email: [null, [Validators.email, Validators.required]],
       password: [null, [Validators.required]],
     });
+    this.user.reload();
   }
   validateForm!: UntypedFormGroup;
   isLogin: boolean = false;
 
   submitForm(): void {
     if (this.validateForm.valid) {
-      // console.log('submit', this.validateForm.value);
       this.user.userLogin(this.validateForm.value)
       this.validateForm.reset();
-    } else {
-      Object.values(this.validateForm.controls).forEach(control => {
-        if (control.invalid) {
-          control.markAsDirty();
-          control.updateValueAndValidity({ onlySelf: true });
+      this.user.isLoginError.subscribe((isError) => {
+        if (isError) {
+          this.authError = "Login Failed Check Email or Password"
         }
-      });
-    }
+        else{
+          alert("Shi hai")
+        }
+      })
+      setTimeout(()=>
+        (this.authError=undefined),1000)
+    } 
   }
 }

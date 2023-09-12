@@ -7,13 +7,13 @@ import { NzFormTooltipIcon } from 'ng-zorro-antd/form';
 import { NzModalService, NzModalRef } from 'ng-zorro-antd/modal';
 import { faculty, student } from '../data-type';
 import { FacultyService } from '../services/faculty.service';
-@Component({
-  selector: 'app-update-profile',
-  templateUrl: './update-profile.component.html',
-  styleUrls: ['./update-profile.component.css']
-})
-export class UpdateProfileComponent {
 
+@Component({
+  selector: 'app-update-faculty',
+  templateUrl: './update-faculty.component.html',
+  styleUrls: ['./update-faculty.component.css']
+})
+export class UpdateFacultyComponent {
   facultyData: faculty | undefined;
   studentData: undefined | student
   modalService: any;
@@ -26,13 +26,13 @@ export class UpdateProfileComponent {
   updateForm: boolean = false;
   menuType: string = "student";
   showForm: boolean = false;
+  validateForm!: UntypedFormGroup;
   password: string = '';
   hidePassword: boolean = true;
-  hideCPassword: boolean = true;
-  isError = false;
-  confirmModal?: NzModalRef;
-  validateForm!: UntypedFormGroup;
+  hideCPassword: boolean = true
   isSucessfull = false;
+  isError = false;
+  confirmModal?: NzModalRef; 
   constructor(
     private fb: UntypedFormBuilder,
     private route: Router,
@@ -51,27 +51,25 @@ export class UpdateProfileComponent {
     this.validateForm = this.fb.group({
       userName: [null, [Validators.required]],
       email: [null, [Validators.email, Validators.required]],
-      fName: [null, [Validators.required]],
+      department: [null, [Validators.required]],
       password: [null, [Validators.required]],
       checkPassword: [null, [Validators.required, this.confirmationValidator]],
       phoneNumber: [null, [Validators.required]],
-      gender: [null, [Validators.required]],
-      dob: [null, [Validators.required]],
-      userCourse: [null, [Validators.required]],
-      userSub: [null, [Validators.required]],
+      age: [null, [Validators.required]],
+      course: [null, [Validators.required]],
     });
-    let studentId = this.router.snapshot.paramMap.get('id')
-    studentId && this.user.getUser(studentId).subscribe((result) => {
+    let facultyId = this.router.snapshot.paramMap.get('id')
+    facultyId && this.faculty.getUser(facultyId).subscribe((result) => {
       if (result) {
-        this.studentData = result;
+        this.facultyData = result;
       }
     })
   }
 
   submitForm(): void {
     if (this.validateForm.valid) {
-      this.validateForm.value.id = this.studentData?.id
-      this.user.updateUser(this.validateForm.value).subscribe((result) => {
+      this.validateForm.value.id = this.facultyData?.id
+      this.user.updateFaculty(this.validateForm.value).subscribe((result) => {
         if (result) {
           this.showModal()
         }
@@ -81,7 +79,7 @@ export class UpdateProfileComponent {
       });
       setTimeout(() => {
         this.isSucessfull = false;
-        this.route.navigate(['/student'])
+        this.route.navigate(['/faculty'])
       }, 3000)
     }
     else {
@@ -95,13 +93,14 @@ export class UpdateProfileComponent {
     }
   }
 
-  togglePasswordVisibility(){
+
+  
+  togglePasswordVisibility() {
     this.hidePassword = !this.hidePassword;
   }
   toggleCPasswordVisibility() {
     this.hideCPassword = !this.hideCPassword;
   }
-
 
   updateConfirmValidator(): void {
     Promise.resolve().then(() => this.validateForm.controls['checkPassword'].updateValueAndValidity());
@@ -115,12 +114,13 @@ export class UpdateProfileComponent {
     return {};
   };
 
+  
   showModal(): void {
     this.isSucessfull = true;
   }
   handleOk(): void {
     this.isSucessfull = false;
-    this.route.navigate(['/student'])
+    this.route.navigate(['/faculty'])
   }
   handleCancel(): void {
     this.isSucessfull = false;
@@ -135,6 +135,7 @@ export class UpdateProfileComponent {
     this.showForm = false;
   }
 
+
   list() {
     this.user.studentList().subscribe((result) => {
       this.studentList = result;
@@ -146,6 +147,13 @@ export class UpdateProfileComponent {
     el!.classList.toggle("show");
   }
 
+  updateStudent(val: number) {
+  }
+  updateCancelForm() {
+    this.isSucessfull = false;
+    this.updateForm = false;
+    this.showTable = true;
+  }
   posts: any;
   page: number = 1;
   tableSize: number = 5;
@@ -157,7 +165,6 @@ export class UpdateProfileComponent {
         console.log("No Data Fount......");
     })
   }
-
   cancelForm() {
     this.route.navigate(['/faculty'])
   }

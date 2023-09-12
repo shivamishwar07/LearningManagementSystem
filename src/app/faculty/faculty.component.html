@@ -13,8 +13,8 @@
                 </nz-form-control>
                 <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Department is requred">
                     <div class="form__group field">
-                        <input type="text" formControlName="department" id="department" class="form__field" placeholder="Name"
-                            required="">
+                        <input type="text" formControlName="department" id="department" class="form__field"
+                            placeholder="Name" required="">
                         <label for="department" class="form__label">Department Name</label>
                     </div>
                 </nz-form-control>
@@ -45,8 +45,8 @@
             <nz-form-item>
                 <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Input Course">
                     <div class="form__group field">
-                        <input type="text" formControlName="course" id="course" class="form__field"
-                            placeholder="course" required="">
+                        <input type="text" formControlName="course" id="course" class="form__field" placeholder="course"
+                            required="">
                         <label for="name" class="form__label">Enter Course</label>
                     </div>
                 </nz-form-control>
@@ -65,10 +65,13 @@
                 <nz-form-item>
                     <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your password!">
                         <div class="form__group field">
-                            <input class="form__field" type="{{ hidePassword ? 'password' : 'text' }}" placeholder="Password" id="password"
-                                formControlName="password" (ngModelChange)="updateConfirmValidator()" />
-                                <span *ngIf="!hidePassword" class="visible" nz-icon (click)="togglePasswordVisibility()" nzType="eye-invisible" nzTheme="outline"></span>
-                                <span *ngIf="hidePassword" class="visible" (click)="togglePasswordVisibility()"  nz-icon nzType="eye" nzTheme="outline"></span>
+                            <input class="form__field" type="{{ hidePassword ? 'password' : 'text' }}"
+                                placeholder="Password" id="password" formControlName="password"
+                                (ngModelChange)="updateConfirmValidator()" />
+                            <span *ngIf="!hidePassword" class="visible" nz-icon (click)="togglePasswordVisibility()"
+                                nzType="eye-invisible" nzTheme="outline"></span>
+                            <span *ngIf="hidePassword" class="visible" (click)="togglePasswordVisibility()" nz-icon
+                                nzType="eye" nzTheme="outline"></span>
                             <label for="name" class="form__label"> Password</label>
                         </div>
                     </nz-form-control>
@@ -76,10 +79,14 @@
                 <nz-form-item>
                     <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="errorTpl">
                         <div style="margin-left: 272px;" class="form__group field">
-                            <input class="form__field"  placeholder="Confirm Password" type="{{ hideCPassword ? 'password' : 'text' }}"
-                                formControlName="checkPassword" id="checkPassword" />
-                                <span *ngIf="!hideCPassword" class="visible" style="height: 30px;" (click)="toggleCPasswordVisibility()" nz-icon nzType="eye-invisible" nzTheme="outline"></span>
-                                <span *ngIf="hideCPassword" class="visible" nz-icon nzType="eye" (click)="toggleCPasswordVisibility()" nzTheme="outline"></span>
+                            <input class="form__field" placeholder="Confirm Password"
+                                type="{{ hideCPassword ? 'password' : 'text' }}" formControlName="checkPassword"
+                                id="checkPassword" />
+                            <span *ngIf="!hideCPassword" class="visible" style="height: 30px;"
+                                (click)="toggleCPasswordVisibility()" nz-icon nzType="eye-invisible"
+                                nzTheme="outline"></span>
+                            <span *ngIf="hideCPassword" class="visible" nz-icon nzType="eye"
+                                (click)="toggleCPasswordVisibility()" nzTheme="outline"></span>
                             <label for="name" class="form__label">Confirm Password</label>
                         </div>
                         <ng-template #errorTpl let-control>
@@ -166,16 +173,17 @@
                 <td>{{ data.password }}</td>
                 <td><a href="">0%</a></td>
                 <td><a style="color: red;"><span (click)="showConfirmm(data.id)" nz-icon nzType="delete"
-                            nzTheme="outline"></span></a><span style="margin-left: 40px;"> <a><span
-                                routerLink="/updateUser/{{data.id}}" nz-icon nzType="edit"
-                                nzTheme="outline"></span></a></span> </td>
+                            nzTheme="outline"></span></a>
+                    <span style="margin-left: 40px;"><a><span routerLink="/updateFaculty/{{data.id}}" nz-icon
+                                nzType="edit" nzTheme="outline"></span></a></span>
+                </td>
 
             </tr>
         </tbody>
     </nz-table>
 </div>
 <div class="pagination">
-<pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="page = $event"></pagination-controls>
+    <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="page = $event"></pagination-controls>
 </div>
 
 <app-footer></app-footer>

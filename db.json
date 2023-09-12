@@ -1,7 +1,7 @@
 {
   "studentData": [
     {
-      "userName": "Adarsh Kumar Sharma",
+      "userName": "Adarsh Kumar",
       "email": "adarsh@gmail.com",
       "fName": "Abhinandan Sharma",
       "password": "1234abc",
@@ -19,7 +19,7 @@
       "fName": "Dheeru",
       "password": "1234",
       "checkPassword": "1234",
-      "phoneNumber": "54365435454",
+      "phoneNumber": "543654354",
       "gender": "Male",
       "dob": "17-07-1958",
       "userCourse": "B-Tech",
@@ -76,7 +76,7 @@
       "password": "1234",
       "checkPassword": "1234",
       "phoneNumber": "87879868",
-      "age": "45",
+      "age": "47",
       "course": "DBMS",
       "id": 2
     },
